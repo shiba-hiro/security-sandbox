@@ -65,6 +65,13 @@ Response should be like this;
 {"sub":"de229a6c-3db0-4699-abd5-6ac6b419ed18","email_verified":false,"preferred_username":"sample"}
 ```
 
+To confirm the access token is valid or not, token introspection endpoint can be used;
+
+```sh
+curl -X POST -d "client_id={client_id}&client_secret={client_secret}&token={access_token}" http://localhost:11080/auth/realms/sample-realm/protocol/openid-connect/token/introspect
+
+```
+
 
 ```js
 const issueToken = ({code, clientSecret}) => {
