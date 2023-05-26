@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0",
+    "openid-client": "^5.4.2",
+    "rsa-pem-from-mod-exp": "^0.8.5"
+  }
+}
