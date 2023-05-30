@@ -1,0 +1,41 @@
+# Resource Owner Password Credentials Grant flow
+
+Toggle `Direct Access Grants Enabled` to `ON` in a client.
+
+Add a new user in a realm.
+
+Set a password for the user from `Credentials` tab.
+
+
+```sh
+curl -X POST \
+  -d "client_id=sample-app-client" \
+  -d "client_secret=oCSz1fbYYTzhTIn0fr0KypoPWEqWNzwv" \
+  -d "username=test-user" \
+  -d "password=testpass" \
+  -d "grant_type=password" \
+  http://localhost:11080/auth/realms/sample-realm/protocol/openid-connect/token
+```
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJleWNRTEZaUzFHZUtrc3Rzc3VaSGIwYUxDZjU3SVFRbktickNJTTgtaDhVIn0.eyJleHAiOjE2ODUzMjExMjAsImlhdCI6MTY4NTMyMDgyMCwianRpIjoiMmE0ZDc3MTYtMjcyZC00NjQ4LWFkZWItODE3ZTVmOWM3OWFmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxMTA4MC9hdXRoL3JlYWxtcy9zYW1wbGUtcmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNTZmYjQyMjYtMzU0ZC00ZTYzLTgyY2ItYWFjNGY3YjI0NmY1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2FtcGxlLWFwcC1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiMmZmNTdhYjAtYzVlYy00M2NiLTkzMDgtMDZhZmU4OThhZDY2IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLXNhbXBsZS1yZWFsbSIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyZmY1N2FiMC1jNWVjLTQzY2ItOTMwOC0wNmFmZTg5OGFkNjYiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3QtdXNlciJ9.hrsg-TEen8Wv5Xj5qo3UWjbr5st5cZ1PNvSCHkEoOFEFSU4tvFdK_3W0umv5DAs45jmG1K1jjg8FdJAPSThJtebpyejTv2cdklKGAMsc3wq0yWRCzASUGUnHsN8-mOhI2NEtQy1qMdAQagNFxr0lfPZrBJZAEP_xwqdn4ZuPIF-XjlLiTdP_xybgr_0VHg_dAywxU8ywcuDTP8T89-p3D1YQcopITbXgsqunfA22tFwKOL1eAGdRKDvYUTDuVIL7niDmguQxFgJUmN6hbzLwJbTrEmhT8AglHZCnjjxHopFNrwtd3hXOXsQsF32_5HoqYfvAA3I8xAybUvYPgZP-MQ",
+  "expires_in": 300,
+  "refresh_expires_in": 1800,
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzYjAwOWJiMi1jY2U2LTQyMDEtYmY3NS01MjI3ODUzMzZkYmQifQ.eyJleHAiOjE2ODUzMjI2MjAsImlhdCI6MTY4NTMyMDgyMCwianRpIjoiOTg5MWY4ZWYtMDMxNS00OThiLWI2Y2QtYWVjMWUyMTYyYWFiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxMTA4MC9hdXRoL3JlYWxtcy9zYW1wbGUtcmVhbG0iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjExMDgwL2F1dGgvcmVhbG1zL3NhbXBsZS1yZWFsbSIsInN1YiI6IjU2ZmI0MjI2LTM1NGQtNGU2My04MmNiLWFhYzRmN2IyNDZmNSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJzYW1wbGUtYXBwLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiIyZmY1N2FiMC1jNWVjLTQzY2ItOTMwOC0wNmFmZTg5OGFkNjYiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyZmY1N2FiMC1jNWVjLTQzY2ItOTMwOC0wNmFmZTg5OGFkNjYifQ.NxKhVf1iIWmixdHpaFKLOVJladhdMJIPmiXnEAnu3SI",
+  "token_type": "Bearer",
+  "not-before-policy": 0,
+  "session_state": "2ff57ab0-c5ec-43cb-9308-06afe898ad66",
+  "scope": "email profile"
+}
+```
+
+
+便利でわかりやすいが、推奨の方法ではない。
+
+https://access.redhat.com/documentation/ja-jp/red_hat_single_sign-on/7.5/html/securing_applications_and_services_guide/_resource_owner_password_credentials_flow
+> 絶対に必要な場合を除き、このフローの使用は推奨されません。
+
+
+https://www.authlete.com/resources/videos/oauth2-flows/
+> This grant flow is defined (but not recommended for use today) for existing services, that control API access based on ID and password pairs of end users, to be migrated to OAuth 2.
