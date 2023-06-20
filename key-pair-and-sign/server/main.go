@@ -25,7 +25,7 @@ func main() {
 			keyID := token.Header["kid"].(string)
 			publicKeyBytes := keysMap[keyID]
 			publicKeyPem, _ := pem.Decode(publicKeyBytes)
-			publicKey, err := x509.ParsePKIXPublicKey(publicKeyPem.Bytes)
+			publicKey, err := x509.ParsePKCS1PublicKey(publicKeyPem.Bytes)
 			return publicKey, err
 		})
 
@@ -63,13 +63,9 @@ func generateKey() (string, []byte) {
 
 	// 公開鍵の取得
 	publicKey := &privateKey.PublicKey
-	asn1Bytes, err := x509.MarshalPKIXPublicKey(publicKey)
-	if err != nil {
-		panic(err)
-	}
 	pemkey := &pem.Block{
-		Type:  "PUBLIC KEY",
-		Bytes: asn1Bytes,
+		Type:  "RSA PUBLIC KEY",
+		Bytes: x509.MarshalPKCS1PublicKey(publicKey),
 	}
 	pubKeyBytes := pem.EncodeToMemory(pemkey)
 	keysMap[keyID] = pubKeyBytes
